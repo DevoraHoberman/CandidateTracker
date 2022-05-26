@@ -7,7 +7,7 @@ const Details = () => {
     const [candidate, setCandidate] = useState({});
     const [confirmOrRefuse, setConfirmOrRefuse] = useState(false);
     const { id } = useParams();
-    const {setConfirmedCount, setRefusedCount, setPendingCount} = useCountContext();
+    const {updateConfirmedCount, updateRefusedCount, updatePendingCount} = useCountContext();
 
     useEffect(() => {
         const getCandidate = async () => {
@@ -18,16 +18,16 @@ const Details = () => {
     }, [confirmOrRefuse]);
     const onConfirmClick = async () => {
         await axios.post('api/candidatetracker/confirm', candidate);
-        setConfirmedCount();
-        setPendingCount();
-        setRefusedCount();
+        updateConfirmedCount();
+        updatePendingCount();
+        updateRefusedCount();
         setConfirmOrRefuse(true);      
     }
     const onRefuseClick = async () => {
         await axios.post('/api/candidatetracker/refuse', candidate);
-        setRefusedCount();
-        setPendingCount();
-        setConfirmedCount();
+        updateConfirmedCount();
+        updatePendingCount();
+        updateRefusedCount();
         setConfirmOrRefuse(true)
     }    
     const {firstName, lastName, email, phoneNumber, registrationStatus, notes}= candidate;

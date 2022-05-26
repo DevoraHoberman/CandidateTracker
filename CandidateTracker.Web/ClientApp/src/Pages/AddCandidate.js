@@ -7,7 +7,7 @@ import { useCountContext } from '../CountContext';
 const AddCandidate = () => {
     const [candidate, setCandidate] = useState({ firstName: '', lastName: '', email: '', phoneNumber: '', notes: '' });
     const history = useHistory();
-    const {setPendingCount} = useCountContext();
+    const {updatePendingCount} = useCountContext();
     const {firstName, lastName, email, phoneNumber, notes} = candidate;
     
 
@@ -15,7 +15,7 @@ const AddCandidate = () => {
         candidate.registrationStatus = 'pending';
         await axios.post('/api/candidatetracker/addcandidate', candidate);        
         setCandidate({firstName: '', lastName: '', email: '', phoneNumber: '', notes: '' });   
-        setPendingCount();       
+        updatePendingCount();       
         history.push('/');
     }
     const onTextChange = e =>{

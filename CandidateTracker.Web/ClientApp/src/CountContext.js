@@ -33,7 +33,7 @@ const CountContextComponent = ({ children }) => {
     }, []);
 
     return (
-        <CountContext.Provider value={{ pendingCount, setPendingCount, refusedCount, setRefusedCount, confirmedCount, setConfirmedCount }}>
+        <CountContext.Provider value={{ pendingCount, updatePendingCount, refusedCount, updateRefusedCount, confirmedCount, updateConfirmedCount }}>
             {children}
         </CountContext.Provider>
     )
